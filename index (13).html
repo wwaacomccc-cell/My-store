@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>متجر الأدوات المنزلية</title>
+<style>
+:root{--bg:#eef3fb;--card:#fff;--tx:#14213d;--mut:#64748b;--pri:#1746b0;--pri2:#0f3a99;--acc:#e11d2e;--bd:#dde6f5}
+@media(prefers-color-scheme:dark){:root{--bg:#0b1220;--card:#131c2e;--tx:#eef2fb;--mut:#9aa8c2;--pri:#4c86ff;--pri2:#8ab4ff;--acc:#ff5468;--bd:#22304a}}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,"Segoe UI",Tahoma,sans-serif;background:var(--bg);color:var(--tx)}
+header{position:sticky;top:0;z-index:5;background:var(--pri);color:#fff;padding:10px 12px;display:flex;gap:8px;align-items:center}
+header h1{font-size:17px;margin:0;white-space:nowrap}
+#q{flex:1;min-width:0;padding:10px 12px;border:0;border-radius:10px;font-size:15px}
+.ib{background:rgba(255,255,255,.18);color:#fff;border:0;border-radius:10px;padding:9px 11px;font-size:15px;position:relative}
+.ib b{position:absolute;top:-6px;left:-6px;background:var(--acc);border-radius:99px;font-size:11px;padding:1px 6px}
+#cats{display:flex;gap:8px;overflow-x:auto;padding:10px 12px}
+.chip{flex:none;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:99px;padding:8px 14px;font-size:14px}
+.chip.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+#grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:4px 12px 12px}
+@media(min-width:700px){#grid{grid-template-columns:repeat(4,1fr)}}
+.p{background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--bd);cursor:pointer;position:relative}
+.p img,.ph{width:100%;aspect-ratio:1;object-fit:cover;background:var(--bd);display:flex;align-items:center;justify-content:center;font-size:34px}
+.p div.i{padding:8px 10px}.nm{font-size:14px;height:38px;overflow:hidden}
+.pr{font-weight:700;color:var(--pri2)}.old{color:var(--mut);text-decoration:line-through;font-size:12px;margin-inline-start:6px}
+.tag{position:absolute;top:8px;right:8px;background:var(--acc);color:#fff;font-size:12px;border-radius:8px;padding:2px 8px}
+.out{opacity:.55}
+.btn{background:var(--pri);color:#fff;border:0;border-radius:10px;padding:12px;font-size:15px;width:100%;font-weight:600}
+.btn.g{background:var(--card);color:var(--tx);border:1px solid var(--bd)}
+#more{display:block;margin:6px auto 24px;width:200px}
+#md{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;z-index:20;align-items:flex-end;justify-content:center}
+#md.on{display:flex}
+#bx{background:var(--bg);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:18px 18px 0 0;padding:16px}
+@media(min-width:700px){#md{align-items:center}#bx{border-radius:18px}}
+input,select,textarea{width:100%;padding:11px;margin:5px 0;border:1px solid var(--bd);border-radius:10px;font-size:15px;background:var(--card);color:var(--tx);font-family:inherit}
+.row{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd)}
+.qty button{width:30px;height:30px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font-size:16px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:10px 18px;border-radius:10px;display:none;z-index:30}
+h3{margin:4px 0 10px}.mut{color:var(--mut);font-size:13px}.x{float:left;background:none;border:0;font-size:24px;color:var(--tx)}
+header{background:linear-gradient(135deg,#0f3a99,#1f64e0);box-shadow:0 4px 16px rgba(15,58,153,.25);padding:12px}
+header h1{color:#ffd21f;font-size:18px;font-weight:800}
+#q{background:#fff;color:#14213d;border-radius:12px}
+.ib{border-radius:12px}
+.chip{font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.chip.on{background:linear-gradient(135deg,#0f3a99,#1f64e0);border-color:transparent}
+.p{border:0;border-radius:18px;box-shadow:0 2px 10px rgba(15,40,100,.12);transition:transform .15s}
+.p:active{transform:scale(.97)}
+.tag{background:var(--acc);border-radius:99px;font-weight:700}
+.btn{background:linear-gradient(135deg,#0f3a99,#1f64e0);border-radius:14px;box-shadow:0 4px 12px rgba(31,100,224,.3)}
+.btn.g{background:var(--card);box-shadow:none}
+#bx{border-radius:24px 24px 0 0}
+.sr{display:flex;gap:6px;padding:0 10px 10px;font-size:13px;align-items:center;flex-wrap:wrap}.sr span{cursor:pointer;padding:4px 9px;border-radius:99px;background:var(--bd);color:var(--tx)}.sr span.on{background:var(--pri);color:#fff}
+.hrt{position:absolute;top:8px;left:8px;background:rgba(255,255,255,.92);color:#e11d2e;border-radius:99px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:17px;z-index:2}
+.ib b.nn{background:var(--acc)}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="shop">🏠 هانى العجمى</h1>
+  <input id="q" type="search" placeholder="ابحث بالاسم أو الكود...">
+  <button class="ib" id="nb">🔔<b id="nn" style="display:none">0</b></button>
+  <button class="ib" id="acc">👤</button>
+  <button class="ib" id="cartb">🛒<b id="cn">0</b></button>
+</header>
+<div id="cats"></div>
+<div id="grid"></div>
+<button class="btn g" id="more" style="display:none">عرض المزيد</button>
+<div id="rv" style="padding:0 12px 28px"></div>
+<div id="md"><div id="bx"></div></div>
+<div id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const sb = supabase.createClient('https://sdxoekoqwlpjylryvsey.supabase.co','sb_publishable_kC7hN0WhoW7JGpE4Xs6odA_sX6TY8yo');
+const $ = id => document.getElementById(id), PAGE = 24;
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money = n => Number(n).toLocaleString('ar-EG') + ' ج';
+let cats = [], offers = [], prods = {}, cart = {}, page = 0, cat = null, term = '', user = null, zones = [], settings = {};
+try { cart = JSON.parse(localStorage.getItem('cart') || '{}'); } catch (e) {}
+
+function toast(t) { const e = $('toast'); e.textContent = t; e.style.display = 'block'; setTimeout(() => e.style.display = 'none', 2600); }
+function open_(h) { $('bx').innerHTML = '<button class="x" onclick="closeM()">×</button>' + h; $('md').classList.add('on'); }
+function closeM() { $('md').classList.remove('on'); }
+$('md').onclick = e => { if (e.target.id === 'md') closeM(); };
+
+function price(p) {
+  let d = 0;
+  offers.forEach(o => { if (o.product_id === p.id || (o.category_id && o.category_id === p.category_id)) d = Math.max(d, Number(o.discount_percent)); });
+  return { now: Math.round(p.price * (1 - d / 100) * 100) / 100, old: d ? p.price : null, d };
+}
+function saveCart() { try { localStorage.setItem('cart', JSON.stringify(cart)); } catch (e) {} $('cn').textContent = Object.values(cart).reduce((a, b) => a + b, 0); }
+
+async function init() {
+  const { data: { session } } = await sb.auth.getSession(); user = session?.user || null;
+  sb.auth.onAuthStateChange((_, s) => { user = s?.user || null; setTimeout(() => { loadFavs(); loadMyR(); }, 0); });
+  const [c, o, z, s] = await Promise.all([
+    sb.from('categories').select('id,parent_id,name').eq('is_active', true).order('sort_order'),
+    sb.from('offers').select('product_id,category_id,discount_percent').eq('is_active', true).lte('starts_at', new Date().toISOString()).gte('ends_at', new Date().toISOString()),
+    sb.from('delivery_zones').select('id,name,fee').eq('is_active', true),
+    sb.from('shop_settings').select('*').single()]);
+  cats = c.data || []; offers = o.data || []; zones = z.data || []; settings = s.data || {};
+  if (settings.shop_name) { $('shop').textContent = '🏠 ' + settings.shop_name; document.title = settings.shop_name; }
+  drawCats(); saveCart(); load(true);
+}
+function drawCats() {
+  const top = cats.filter(c => !c.parent_id);
+  $('cats').innerHTML = `<button class="chip ${cat === null ? 'on' : ''}" data-c="">الكل</button>` +
+    top.map(c => `<button class="chip ${cat === c.id ? 'on' : ''}" data-c="${c.id}">${esc(c.name)}</button>`).join('');
+  $('cats').querySelectorAll('button').forEach(b => b.onclick = () => { cat = b.dataset.c ? +b.dataset.c : null; drawCats(); load(true); });
+}
+async function load(reset) {
+  if (reset) { page = 0; $('grid').innerHTML = '<p class="mut" style="grid-column:1/-1;text-align:center">جاري التحميل...</p>'; }
+  let q = sb.from('products').select('id,code,name,description,price,stock,category_id,product_images(url,sort_order)').eq('is_active', true).order('id', { ascending: false }).range(page * PAGE, page * PAGE + PAGE - 1);
+  if (cat !== null) { const ids = [cat, ...cats.filter(c => c.parent_id === cat).map(c => c.id)]; q = q.in('category_id', ids); }
+  if (term) { const t = term.replace(/[%,()]/g, ' '); q = q.or(`name.ilike.%${t}%,code.ilike.%${t}%`); }
+  const { data, error } = await q;
+  if (error) { toast('تعذر تحميل المنتجات'); return; }
+  if (reset) $('grid').innerHTML = '';
+  if (reset && !data.length) $('grid').innerHTML = '<p class="mut" style="grid-column:1/-1;text-align:center">لا توجد منتجات</p>';
+  data.forEach(p => { prods[p.id] = p; $('grid').insertAdjacentHTML('beforeend', card(p)); });
+  $('more').style.display = data.length === PAGE ? 'block' : 'none';
+  refreshStats(data.map(p => p.id));
+}
+const SS = {}, myR = {};
+function paintStats(id) {
+  const st = SS[id] || { likes: 0, dislikes: 0, comments: 0 }, m = myR[id] || 0;
+  document.querySelectorAll(`[data-l="${id}"]`).forEach(e => { e.querySelector('b').textContent = st.likes; e.classList.toggle('on', m === 1); });
+  document.querySelectorAll(`[data-d="${id}"]`).forEach(e => { e.querySelector('b').textContent = st.dislikes; e.classList.toggle('on', m === -1); });
+  document.querySelectorAll(`[data-c="${id}"]`).forEach(e => e.querySelector('b').textContent = st.comments);
+}
+async function loadMyR() {
+  Object.keys(myR).forEach(k => delete myR[k]);
+  if (user) { const { data } = await sb.from('product_reactions').select('product_id,value'); (data || []).forEach(r => myR[r.product_id] = r.value); }
+  document.querySelectorAll('[data-l]').forEach(e => paintStats(Number(e.dataset.l)));
+}
+async function refreshStats(ids) {
+  if (!ids.length) return;
+  const { data } = await sb.rpc('products_stats', { p_ids: ids });
+  (data || []).forEach(r => { SS[r.product_id] = { likes: Number(r.likes), dislikes: Number(r.dislikes), comments: Number(r.comments) }; });
+  ids.forEach(paintStats);
+}
+async function cardReact(id, v) {
+  if (!user) return authForm('سجّل الدخول للتقييم', () => { });
+  const r = myR[id] === v ? await sb.from('product_reactions').delete().eq('product_id', id).eq('user_id', user.id) : await sb.from('product_reactions').upsert({ user_id: user.id, product_id: id, value: v }, { onConflict: 'user_id,product_id' });
+  if (r.error) return toast('تعذر الحفظ');
+  if (myR[id] === v) delete myR[id]; else myR[id] = v;
+  refreshStats([id]);
+}
+function img(p) { const im = (p.product_images || []).sort((a, b) => a.sort_order - b.sort_order)[0]; return im ? `<img loading="lazy" src="${esc(im.url)}" alt="">` : '<div class="ph">📦</div>'; }
+function card(p) {
+  const pr = price(p);
+  return `<div class="p ${p.stock < 1 ? 'out' : ''}" onclick="showP(${p.id})">${pr.d ? `<span class="tag">-${pr.d}%</span>` : ''}<span class="hrt" data-h="${p.id}" onclick="event.stopPropagation();toggleFav(${p.id})">${favs.has(p.id) ? '♥' : '♡'}</span>${img(p)}
+  <div class="i"><div class="nm">${esc(p.name)}</div><div><span class="pr">${money(pr.now)}</span>${pr.old ? `<span class="old">${money(pr.old)}</span>` : ''}</div>
+  ${p.stock < 1 ? '<div class="mut">غير متوفر</div>' : ''}</div>
+  <div class="sr" onclick="event.stopPropagation()"><span data-l="${p.id}" onclick="cardReact(${p.id},1)">👍 <b>0</b></span><span data-d="${p.id}" onclick="cardReact(${p.id},-1)">👎 <b>0</b></span><span onclick="showP(${p.id})" data-c="${p.id}">💬 <b>0</b></span></div></div>`;
+}
+function showP(id) {
+  const p = prods[id], pr = price(p), ims = (p.product_images || []).sort((a, b) => a.sort_order - b.sort_order);
+  open_(`<div style="display:flex;gap:6px;overflow-x:auto">${ims.map(i => `<img src="${esc(i.url)}" style="height:220px;border-radius:12px">`).join('') || '<div class="ph" style="height:160px;width:100%;border-radius:12px">📦</div>'}</div>
+  <h3>${esc(p.name)}</h3><div class="pr" style="font-size:20px">${money(pr.now)}${pr.old ? `<span class="old">${money(pr.old)}</span>` : ''}</div>
+  <p class="mut">الكود: ${esc(p.code || '-')} • ${p.stock > 0 ? 'متوفر: ' + p.stock : 'غير متوفر'}</p><p>${esc(p.description || '')}</p>
+  ${p.stock > 0 ? `<button class="btn" onclick="add(${p.id})">أضف إلى السلة</button>` : ''}
+  <button class="btn g" style="margin-top:8px" onclick="reserve(${p.id})">احجز المنتج</button><button class="btn g" style="margin-top:8px" data-hb="${p.id}" onclick="toggleFav(${p.id})">${favs.has(p.id) ? '♥ في المفضلة' : '♡ أضف للمفضلة'}</button><div id="soc" style="margin-top:14px"></div>`);
+  loadSoc(id);
+}
+async function loadSoc(id) {
+  const box = $('soc'); if (!box) return;
+  const [st, cm, mi] = await Promise.all([
+    sb.rpc('product_stats', { p_id: id }),
+    sb.from('product_comments').select('id,name,body,created_at,is_hidden,user_id,reply,reply_at').eq('product_id', id).order('id', { ascending: false }).limit(30),
+    user ? sb.from('product_reactions').select('value').eq('product_id', id).maybeSingle() : Promise.resolve({ data: null })
+  ]);
+  if (!$('soc')) return;
+  const s0 = (st.data && st.data[0]) || { likes: 0, dislikes: 0 }, my = mi.data ? mi.data.value : 0;
+  const on = 'background:var(--pri);color:#fff';
+  box.innerHTML = `<div style="display:flex;gap:8px"><button class="btn g" style="${my === 1 ? on : ''}" onclick="react(${id},1)">👍 ${s0.likes}</button><button class="btn g" style="${my === -1 ? on : ''}" onclick="react(${id},-1)">👎 ${s0.dislikes}</button></div>
+  <h3 style="margin-top:14px">💬 التعليقات</h3>
+  ${(cm.data || []).map(c => `<div class="row" style="display:block"><b>${esc(c.name)}</b> <span class="mut">${new Date(c.created_at).toLocaleDateString('ar-EG')}</span>${c.is_hidden ? ' <span class="mut">(مخفي)</span>' : ''}<div>${esc(c.body)}</div>${c.reply ? `<div style="margin-top:6px;border-right:3px solid #1e40af;padding-right:8px"><b>رد صاحب المحل:</b> ${esc(c.reply)}</div>` : ''}${user && c.user_id === user.id ? `<a class="mut" style="text-decoration:underline" onclick="delCmt(${c.id},${id})">حذف تعليقي</a>` : ''}</div>`).join('') || '<p class="mut">لا توجد تعليقات بعد، كن أول من يعلّق</p>'}
+  <textarea id="cmt" rows="2" maxlength="500" placeholder="اكتب تعليقك..."></textarea><button class="btn" style="margin-top:6px" onclick="addCmt(${id})">إرسال التعليق</button>`;
+}
+async function react(id, v) {
+  if (!user) return authForm('سجّل الدخول للتقييم', () => { showP(id); });
+  const { data: cur } = await sb.from('product_reactions').select('value').eq('product_id', id).maybeSingle();
+  const r = cur && cur.value === v ? await sb.from('product_reactions').delete().eq('product_id', id).eq('user_id', user.id) : await sb.from('product_reactions').upsert({ user_id: user.id, product_id: id, value: v }, { onConflict: 'user_id,product_id' });
+  if (r.error) return toast('تعذر الحفظ'); if (cur && cur.value === v) delete myR[id]; else myR[id] = v; refreshStats([id]); loadSoc(id);
+}
+async function addCmt(id) {
+  if (!user) return authForm('سجّل الدخول لإضافة تعليق', () => { showP(id); });
+  const body = ($('cmt').value || '').trim(); if (!body) return toast('اكتب التعليق أولًا');
+  const { data: pf } = await sb.from('profiles').select('full_name').eq('id', user.id).maybeSingle();
+  const { error } = await sb.from('product_comments').insert({ product_id: id, user_id: user.id, name: ((pf && pf.full_name) || 'عميل').slice(0, 40), body: body.slice(0, 500) });
+  if (error) return toast('تعذر إرسال التعليق'); toast('تم نشر تعليقك ✓'); loadSoc(id); refreshStats([id]);
+}
+async function delCmt(cid, id) { if (!confirm('حذف تعليقك؟')) return; await sb.from('product_comments').delete().eq('id', cid); loadSoc(id); refreshStats([id]); }
+function add(id) { const p = prods[id]; const n = (cart[id] || 0) + 1; if (n > p.stock) return toast('الكمية المتاحة ' + p.stock); cart[id] = n; saveCart(); toast('تمت الإضافة ✓'); closeM(); }
+
+function showCart() {
+  const ids = Object.keys(cart).filter(i => prods[i]); let sub = 0;
+  if (!ids.length) return open_('<h3>🛒 السلة</h3><p class="mut">السلة فارغة</p>');
+  const rows = ids.map(i => { const p = prods[i], pr = price(p); sub += pr.now * cart[i];
+    return `<div class="row"><div style="flex:1">${esc(p.name)}<div class="mut">${money(pr.now)}</div></div><div class="qty"><button onclick="chg(${i},1)">+</button> ${cart[i]} <button onclick="chg(${i},-1)">−</button></div></div>`; }).join('');
+  open_(`<h3>🛒 السلة</h3>${rows}<div class="row"><b>الإجمالي</b><b>${money(sub)}</b></div>
+  <button class="btn" style="margin-top:10px" onclick="checkout()">إتمام الطلب</button>`);
+}
+function chg(i, d) { const n = (cart[i] || 0) + d; if (n > prods[i].stock) return toast('الكمية المتاحة ' + prods[i].stock); if (n <= 0) delete cart[i]; else cart[i] = n; saveCart(); showCart(); }
+
+function authForm(msg, after) {
+  open_(`<h3>تسجيل الدخول</h3><p class="mut">${msg || ''}</p><input id="ae" type="email" placeholder="البريد الإلكتروني" dir="ltr"><input id="ap" type="password" placeholder="كلمة المرور (6 أحرف على الأقل)" dir="ltr">
+  <input id="an" placeholder="الاسم (للحساب الجديد)"><input id="aph" type="tel" placeholder="رقم الهاتف (للحساب الجديد)">
+  <button class="btn" id="li">دخول</button><button class="btn g" style="margin-top:8px" id="su">إنشاء حساب جديد</button>`);
+  $('li').onclick = async () => { const { error } = await sb.auth.signInWithPassword({ email: $('ae').value.trim(), password: $('ap').value }); if (error) return toast('بيانات غير صحيحة'); user = (await sb.auth.getUser()).data.user; closeM(); toast('تم الدخول ✓'); after && after(); };
+  $('su').onclick = async () => { const { data, error } = await sb.auth.signUp({ email: $('ae').value.trim(), password: $('ap').value, options: { data: { full_name: $('an').value, phone: $('aph').value } } });
+    if (error) return toast(error.message.slice(0, 60)); if (!data.session) return toast('افتح بريدك لتأكيد الحساب'); user = data.user; closeM(); toast('تم إنشاء الحساب ✓'); after && after(); };
+}
+async function checkout() {
+  if (!user) return authForm('سجّل الدخول لإتمام الطلب', checkout);
+  const { data: pf } = await sb.from('profiles').select('full_name,phone,address').eq('id', user.id).single();
+  open_(`<h3>بيانات الطلب</h3><input id="cn_" placeholder="الاسم" value="${esc(pf?.full_name)}"><input id="cp" type="tel" placeholder="رقم الهاتف" value="${esc(pf?.phone)}">
+  <textarea id="ca" rows="2" placeholder="العنوان بالتفصيل">${esc(pf?.address)}</textarea>
+  <select id="cz"><option value="">اختر منطقة التوصيل</option>${zones.map(z => `<option value="${z.id}">${esc(z.name)} — ${money(z.fee)}</option>`).join('')}</select>
+  <textarea id="cnt" rows="2" placeholder="ملاحظات (اختياري)"></textarea><label class="mut">طريقة الدفع</label><select id="pm"><option value="cash">الدفع نقدًا عند الاستلام</option>${settings.vodafone_cash ? '<option value="vf">فودافون كاش</option>' : ''}</select><div id="vfi" class="mut" style="display:none">حوّل المبلغ على فودافون كاش رقم <b>${esc(settings.vodafone_cash)}</b> وابعت صورة التحويل للمحل على واتساب. يتم تأكيد الطلب بعد وصول التحويل.</div><button class="btn" id="go">تأكيد الطلب</button>`);
+  $('pm').onchange = () => $('vfi').style.display = $('pm').value === 'vf' ? 'block' : 'none';
+  $('go').onclick = async () => {
+    const vf = $('pm').value === 'vf', name = $('cn_').value.trim(), ph = $('cp').value.trim(), ad = $('ca').value.trim(), z = $('cz').value;
+    if (!name || !ph || !ad) return toast('أكمل الاسم والهاتف والعنوان'); if (zones.length && !z) return toast('اختر منطقة التوصيل');
+    $('go').disabled = true;
+    const items = Object.keys(cart).map(i => ({ product_id: +i, qty: cart[i] }));
+    const { data, error } = await sb.rpc('place_order', { p_name: name, p_phone: ph, p_address: ad, p_zone_id: z ? +z : null, p_items: items, p_note: (vf ? 'طريقة الدفع: فودافون كاش\n' : '') + $('cnt').value });
+    if (error) { $('go').disabled = false; return toast(error.message.slice(0, 80)); }
+    await sb.from('profiles').update({ full_name: name, phone: ph, address: ad }).eq('id', user.id);
+    cart = {}; saveCart(); open_(`<h3>✅ تم استلام طلبك</h3><p>رقم الطلب: <b>${data}</b></p>${vf ? `<p>حوّل المبلغ على فودافون كاش رقم <b>${esc(settings.vodafone_cash)}</b> وارفع صورة التحويل من الزر تحت.</p><button class="btn" id="pp">📎 رفع صورة التحويل</button>` : ''}<p class="mut">سيتواصل معك المحل لتأكيد الطلب.</p>`); if (vf) $('pp').onclick = () => proofForm('order', data); load(true);
+  };
+}
+const RS = { pending: 'قيد المراجعة', confirmed: 'تم تأكيد الحجز', completed: 'تم الاستلام', expired: 'انتهى الحجز', cancelled: 'ملغي' };
+const ST = { pending: 'قيد المراجعة', confirmed: 'تم التأكيد', preparing: 'جاري التجهيز', out_for_delivery: 'في الطريق', delivered: 'تم التسليم', rejected: 'مرفوض', cancelled: 'ملغي' };
+function proofForm(kind, id) {
+  open_(`<h3>📎 صورة التحويل</h3><p class="mut">اختر لقطة شاشة التحويل من فودافون كاش ليراها المحل ويؤكد طلبك.</p><input id="pf" type="file" accept="image/*"><button class="btn" id="pu">رفع الصورة</button><button class="btn g" style="margin-top:8px" id="px">لاحقًا</button>`);
+  $('px').onclick = closeM;
+  $('pu').onclick = async () => {
+    const f = $('pf').files[0]; if (!f) return toast('اختر الصورة أولًا');
+    $('pu').disabled = true; $('pu').textContent = 'جاري الرفع...';
+    try {
+      const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = URL.createObjectURL(f); });
+      const k = Math.min(1, 1200 / Math.max(img.width, img.height)), c = document.createElement('canvas'); c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      const blob = await new Promise(r => c.toBlob(r, 'image/webp', 0.8));
+      const path = user.id + '/' + (crypto.randomUUID ? crypto.randomUUID() : Date.now() + '' + Math.random().toString(36).slice(2)) + '.webp';
+      const up = await sb.storage.from('payment-proofs').upload(path, blob, { contentType: 'image/webp' }); if (up.error) throw up.error;
+      const row = { url: sb.storage.from('payment-proofs').getPublicUrl(path).data.publicUrl }; row[kind + '_id'] = id;
+      const ins = await sb.from('payment_proofs').insert(row); if (ins.error) throw ins.error;
+      open_('<h3>✅ وصلت صورة التحويل</h3><p class="mut">هيراجعها المحل ويؤكد معاك.</p>');
+    } catch (e) { $('pu').disabled = false; $('pu').textContent = 'رفع الصورة'; toast('تعذر رفع الصورة، جرب تاني'); }
+  };
+}
+async function loadChat() {
+  const box = $('chat'); if (!box || !user) return;
+  const { data } = await sb.from('messages').select('id,body,from_admin,created_at').order('id', { ascending: false }).limit(50);
+  box.innerHTML = (data || []).reverse().map(m => `<div class="row" style="${m.from_admin ? '' : 'justify-content:flex-end'}"><div style="max-width:80%;background:${m.from_admin ? '#e8f0ff' : '#dcfce7'};padding:8px 10px;border-radius:10px"><div>${esc(m.body)}</div><div class="mut" style="font-size:11px">${m.from_admin ? 'صاحب المحل' : 'أنت'} • ${new Date(m.created_at).toLocaleString('ar-EG')}</div></div></div>`).join('') || '<p class="mut">ابدأ المحادثة مع المحل</p>';
+  box.scrollTop = box.scrollHeight;
+}
+async function sendMsg() {
+  if (!user) return authForm('سجّل الدخول لمراسلة المحل');
+  const t = ($('msgTxt').value || '').trim(); if (!t) return toast('اكتب الرسالة أولًا');
+  const { error } = await sb.from('messages').insert({ user_id: user.id, body: t.slice(0, 1000) });
+  if (error) return toast('تعذر الإرسال'); $('msgTxt').value = ''; loadChat();
+}
+async function account() {
+  if (!user) return authForm('');
+  const { data } = await sb.from('orders').select('id,total,status,created_at').order('id', { ascending: false }).limit(20);
+  const { data: fv0 } = await sb.from('favorites').select('product_id'); const fids = (fv0 || []).map(f => f.product_id); const { data: fp } = fids.length ? await sb.from('products').select('id,name').in('id', fids) : { data: [] }; const fv = (fp || []).map(p => ({ product_id: p.id, products: { name: p.name } }));
+  const { data: rs } = await sb.from('reservations').select('id,quantity,unit_price,status,products(name),payments(amount)').order('id', { ascending: false }).limit(20);
+  open_(`<h3>طلباتي</h3>${(data || []).map(o => `<div class="row"><div>طلب #${o.id}<div class="mut">${new Date(o.created_at).toLocaleDateString('ar-EG')}</div></div><div>${money(o.total)}<div class="mut">${ST[o.status] || o.status}</div>${o.status === 'pending' && settings.vodafone_cash ? `<a class="mut" style="text-decoration:underline" onclick="proofForm('order',${o.id})">📎 رفع صورة التحويل</a>` : ''}</div></div>`).join('') || '<p class="mut">لا توجد طلبات</p>'}
+  <h3 style="margin-top:14px">حجوزاتي</h3>${(rs || []).map(r => { const paid = (r.payments || []).reduce((a, b) => a + Number(b.amount), 0), tot = r.unit_price * r.quantity; return `<div class="row"><div>${esc(r.products?.name)} × ${r.quantity}<div class="mut">${RS[r.status] || r.status}</div></div><div style="text-align:left">الإجمالي ${money(tot)}<div class="mut">العربون المدفوع ${money(paid)} • المتبقي ${money(tot - paid)}</div>${(r.status === 'pending' || r.status === 'confirmed') && settings.vodafone_cash ? `<a class="mut" style="text-decoration:underline" onclick="proofForm('reservation',${r.id})">📎 رفع صورة التحويل</a>` : ''}</div></div>`; }).join('') || '<p class="mut">لا توجد حجوزات</p>'}
+  <h3 style="margin-top:14px">💬 مراسلة المحل</h3><div id="chat" style="max-height:40vh;overflow-y:auto"></div><textarea id="msgTxt" rows="2" maxlength="1000" placeholder="اكتب رسالتك للمحل..."></textarea><button class="btn" style="margin-top:6px" onclick="sendMsg()">إرسال</button>
+  <h3 style="margin-top:14px">مفضلتي</h3>${(fv || []).map(f => `<div class="row" data-n="${esc(f.products?.name)}" onclick="goFav(this.dataset.n)"><div>♥ ${esc(f.products?.name)}</div></div>`).join('') || '<p class="mut">لا توجد منتجات مفضلة</p>'}
+  ${settings.whatsapp ? `<a href="https://wa.me/${esc(settings.whatsapp)}" target="_blank"><button class="btn g" style="margin-top:10px">💬 تواصل مع المحل</button></a>` : ''}
+  <button class="btn g" style="margin-top:8px" id="lo">تسجيل الخروج</button>`);
+  $('lo').onclick = async () => { await sb.auth.signOut(); user = null; closeM(); toast('تم الخروج'); };
+  loadChat();
+}
+async function reserve(id) {
+  if (!user) return authForm('سجّل الدخول لحجز المنتج', () => reserve(id));
+  const p = prods[id], pr = price(p), pc = Number(settings.default_deposit_percent || 20);
+  const { data: pf } = await sb.from('profiles').select('full_name,phone').eq('id', user.id).single();
+  open_(`<h3>حجز: ${esc(p.name)}</h3><p class="mut">العربون المطلوب (${pc}%): ${money(pr.now * pc / 100)} — والباقي عند الاستلام</p>${settings.vodafone_cash ? `<p class="mut">يمكنك دفع العربون عبر فودافون كاش على رقم <b>${esc(settings.vodafone_cash)}</b> وإرسال صورة التحويل للمحل.</p>` : ''}
+  <input id="rn" placeholder="الاسم" value="${esc(pf?.full_name)}"><input id="rp" type="tel" placeholder="الهاتف" value="${esc(pf?.phone)}"><button class="btn" id="rg">تأكيد الحجز</button>`);
+  $('rg').onclick = async () => {
+    if (!$('rn').value.trim() || !$('rp').value.trim()) return toast('أكمل البيانات');
+    const exp = new Date(Date.now() + (settings.reservation_days || 3) * 864e5).toISOString();
+    const { data: rv, error } = await sb.from('reservations').insert({ customer_id: user.id, customer_name: $('rn').value.trim(), phone: $('rp').value.trim(), product_id: id, quantity: 1, unit_price: pr.now, deposit_required: Math.round(pr.now * pc) / 100, expires_at: exp }).select('id').single();
+    if (error) return toast('تعذر الحجز'); open_('<h3>✅ تم إرسال طلب الحجز</h3><p class="mut">سيتواصل معك المحل لتأكيده واستلام العربون.</p>' + (settings.vodafone_cash ? '<button class="btn" id="pp">📎 رفع صورة تحويل العربون</button>' : '')); if (settings.vodafone_cash) $('pp').onclick = () => proofForm('reservation', rv.id);
+  };
+}
+
+/* ---- المفضلة والإشعارات ---- */
+const favs = new Set();
+async function loadFavs() {
+  favs.clear();
+  if (user) { const { data } = await sb.from('favorites').select('product_id'); (data || []).forEach(f => favs.add(f.product_id)); }
+  document.querySelectorAll('[data-h]').forEach(e => e.textContent = favs.has(Number(e.dataset.h)) ? '♥' : '♡');
+}
+async function toggleFav(id) {
+  if (!user) return authForm('سجّل الدخول لإضافة المفضلة', () => toggleFav(id));
+  if (favs.has(id)) { await sb.from('favorites').delete().eq('product_id', id).eq('user_id', user.id); favs.delete(id); }
+  else { const { error } = await sb.from('favorites').insert({ user_id: user.id, product_id: id }); if (error) return toast('تعذر الحفظ'); favs.add(id); }
+  document.querySelectorAll(`[data-h="${id}"]`).forEach(e => e.textContent = favs.has(id) ? '♥' : '♡');
+  document.querySelectorAll(`[data-hb="${id}"]`).forEach(e => e.textContent = favs.has(id) ? '♥ في المفضلة' : '♡ أضف للمفضلة');
+}
+function goFav(n) { closeM(); $('q').value = n; term = n; load(true); }
+let notifs = [];
+const seen = () => { try { return Number(localStorage.getItem('seenN') || 0); } catch (e) { return 0; } };
+async function loadNotifs() {
+  const { data } = await sb.from('notifications').select('id,title,body,created_at').order('id', { ascending: false }).limit(20);
+  notifs = data || []; const n = notifs.filter(x => x.id > seen()).length, b = $('nn');
+  b.textContent = n; b.style.display = n ? 'block' : 'none';
+}
+function showNotifs() {
+  open_(`<h3>الإشعارات</h3>${notifs.map(n => `<div class="row"><div><b>${esc(n.title)}</b><div class="mut">${esc(n.body)}</div></div><div class="mut">${new Date(n.created_at).toLocaleDateString('ar-EG')}</div></div>`).join('') || '<p class="mut">لا توجد إشعارات</p>'}`);
+  try { if (notifs[0]) localStorage.setItem('seenN', notifs[0].id); } catch (e) {}
+  $('nn').style.display = 'none';
+}
+$('nb').onclick = showNotifs;
+
+/* ---- التقييمات ---- */
+async function loadReviews() {
+  const { data } = await sb.from('reviews').select('name,rating,comment').eq('is_approved', true).order('id', { ascending: false }).limit(20);
+  const l = data || [], avg = l.length ? (l.reduce((a, r) => a + r.rating, 0) / l.length).toFixed(1) : '';
+  $('rv').innerHTML = `<h3>⭐ آراء العملاء ${l.length ? `<span class="mut">(${avg} من 5 — ${l.length} تقييم)</span>` : ''}</h3>` + l.map(r => `<div class="p" style="cursor:default;padding:10px;margin-bottom:8px"><b>${esc(r.name)}</b> <span style="color:#f5a623">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</span><div class="mut">${esc(r.comment)}</div></div>`).join('') + `<button class="btn g" onclick="reviewForm()">✍️ اكتب رأيك في المحل</button>`;
+}
+async function reviewForm() {
+  if (!user) return authForm('سجّل الدخول لكتابة رأيك', reviewForm);
+  const { data: pf } = await sb.from('profiles').select('full_name').eq('id', user.id).single();
+  open_(`<h3>رأيك في المحل</h3><select id="rr"><option value="5">★★★★★ ممتاز</option><option value="4">★★★★ جيد جدًا</option><option value="3">★★★ جيد</option><option value="2">★★ مقبول</option><option value="1">★ سيء</option></select><input id="rname" placeholder="الاسم" value="${esc(pf?.full_name)}"><textarea id="rc" rows="3" placeholder="اكتب تعليقك (اختياري)"></textarea><button class="btn" id="rs">إرسال التقييم</button>`);
+  $('rs').onclick = async () => {
+    const n = $('rname').value.trim(); if (!n) return toast('اكتب اسمك');
+    const { error } = await sb.from('reviews').upsert({ user_id: user.id, name: n, rating: +$('rr').value, comment: $('rc').value.trim(), is_approved: false }, { onConflict: 'user_id' });
+    if (error) return toast('تعذر الإرسال'); open_('<h3>✅ شكرًا لرأيك</h3><p class="mut">سيظهر تقييمك بعد مراجعة المحل له.</p>');
+  };
+}
+
+let tm; $('q').oninput = e => { clearTimeout(tm); tm = setTimeout(() => { term = e.target.value.trim(); load(true); }, 350); };
+$('more').onclick = () => { page++; load(false); };
+$('cartb').onclick = showCart; $('acc').onclick = account;
+init().then(() => { loadFavs(); loadNotifs(); loadReviews(); });
+</script>
+</body>
+</html>
